@@ -9,6 +9,7 @@ var cookieParse = require('cookie-parser');
 var UserModel = require('./models/user');
 var path = require('path');
 
+var config = require('./config');
 
 app.use(morgan('dev'));
 app.use(gzippo.staticGzip("" + __dirname + "/dist"));
@@ -17,14 +18,15 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParse());
 
 app.mongoose = require('mongoose');
-app.mongoose.connect('mongodb://node:node@ds053090.mongolab.com:53090/africasms');
+app.mongoose.connect(config.mongo.url);
 
-var twilio = require('twilio')('ACb293bc8a8bffe39492782efa3f0571da', '3d14e2345123511d56ca17f52e3cada9');
+var twilio = require('twilio')(config.twilio.appId, config.twilio.auth);
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Express' });
-});
+  res.render('index');
+})
 
+///sign up/sign in
 app.post('/signUp', function (req, res) {
   console.log(req.body);
   res.send('signup');
@@ -32,29 +34,49 @@ app.post('/signUp', function (req, res) {
 
 app.post('/signIn', function (req, res) {
   console.log(req.body);
-  res.end('signin');
+  res.send('signin');
 });
 
+///new list, get list of lists
 app.post('/users/:id/lists', function (req, res) {
   console.log(req.body);
-  res.end('post list');
-});
-app.put('/users/:id/lists', function (req, res) {
-  console.log(req.body);
-  res.end('put list');
+  res.send('post list');
 });
 app.get('/users/:id/lists', function (req, res) {
   console.log(req.body);
-  res.end('get lists');
+  res.send('get lists');
 });
+
+///get list by id
 app.get('/users/:id/lists/:listId', function (req, res) {
   console.log(req.body);
-  res.end('get list by id');
+  res.send('get list by id');
 });
-app.post('/users/:id/lists', function (req, res) {
+app.put('/users/:id/lists/:listId', function (req, res) {
   console.log(req.body);
-  res.end('post list');
+  res.send('update list');
 });
+app.delete('/users/:id/lists/:listId', function (req, res) {
+  console.log(req.body);
+  res.send('delete list');
+});
+
+///add/remove numbers on list
+app.post('/users/:id/lists/:listId/:phonenumber', function (req, res) {
+  console.log(req.body);
+  res.send('add phone to list');
+});
+app.delete('/users/:id/lists/:listId/:phonenumber', function (req, res) {
+  console.log(req.body);
+  res.send('remove phone from list');
+});
+
+/// see list of past messages
+app.get('/users/:id/history', function (req, res) {
+  console.log(req.body);
+  res.send('get history');
+});
+
 
 app.get('/signup/:email/:pass', function (req, res) {
   console.log(req.params);
@@ -94,19 +116,13 @@ app.get('/signin/:email/:pass', function (req, res) {
 app.get('/sendTest/:message', function (req, res) {
   twilio.messages.create({
     to: '+16082865582',
-    from: '+16082607469',
+    from: config.twilio.from,
     body: (req.params.message || 'Hi Megan!')
   }, function (err, msg) {
     console.log(err, msg);
     res.json(msg);
   });
 });
-
-
-
-
-
-
 
 
 app.listen(process.env.PORT || 5000, function () {
