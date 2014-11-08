@@ -38,7 +38,7 @@
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
     "mongoose": "~3.6.13",
-    "request": "*",
+    "request": "~2.47.x",
     "twilio": "^1.7.0"
   },
   "engines": {
