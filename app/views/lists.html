@@ -1,4 +1,7 @@
 <h1>Lists</h1>
+<button class="btn btn-primary" ng-click="newMessage()">New Message</button>
+<button class="btn btn-warning" ng-click="createList()">New List</button>
+<send-modal list='' on-message-sent='messageSent(message)' close-modal='closeModal()' ng-show="isModalOpen"></send-modal>
 <table class="table">
   <thead>
     <td>Name</td>
@@ -6,15 +9,10 @@
     <td>Last Sent</td>
   </thead>
   <tbody>
-    <tr>
-      <td>Mothers</td>
-      <td>12</td>
-      <td>11/1/14 4:23pm</td>
-    </tr>
-    <tr ng-repeat="list in lists">
+    <tr ng-repeat="list in lists" ng-click="goToList(list)" style="cursor: pointer;">
       <td>{{list.name}}</td>
       <td>{{list.numbers.length}}</td>
-      <td>{{list.lastSent}}</td>
+      <td>{{list.lastSent | date:'short'}}</td>
     </tr>
   </tbody>
 </table>

@@ -23,17 +23,17 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
           <li><a ng-href="#/lists">Lists</a></li>
+          <li><a ng-href="#/signUp">Sign Up</a></li>
+          <li><a ng-href="#/signIn">Sign In</a></li>
         </ul>
-        <h3 class="text-muted">africaSms</h3>
+        <a ng-href="#"><h3 class="text-muted">africaSms</h3></a>
       </div>
 
       <div ng-view=""></div>
 
       <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p style="text-align: right;">&copy; Brad Orego 2014. Dev-On Hackathon.</p>
       </div>
     </div>
 
@@ -88,6 +88,9 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/ListsCtrl.js"></script>
+        <script src="scripts/controllers/ListViewCtrl.js"></script>
+        <script src="scripts/controllers/SignUpCtrl.js"></script>
+        <script src="scripts/controllers/SignInCtrl.js"></script>
         <!-- endbuild -->
 </body>
 </html>
