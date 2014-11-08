@@ -69,4 +69,9 @@ angular
     };
 
     return dir;
+  })
+  .factory('EverythingFactory', function ($http, $q) {
+    var EverythingFactory = {};
+    console.log($http, $q);
+    return EverythingFactory;
   });
