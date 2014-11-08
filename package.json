@@ -34,7 +34,12 @@
     "karma-jasmine": "^0.2.3",
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^0.4.0",
-    "time-grunt": "^0.3.1"
+    "time-grunt": "^0.3.1",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "mongoose": "~3.6.13",
+    "request": "*",
+    "twilio": "^1.7.0"
   },
   "engines": {
     "node": ">=0.10.0"
