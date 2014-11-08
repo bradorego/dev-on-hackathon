@@ -25,6 +25,37 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Express' });
 });
 
+app.post('/signUp', function (req, res) {
+  console.log(req.body);
+  res.send('signup');
+});
+
+app.post('/signIn', function (req, res) {
+  console.log(req.body);
+  res.end('signin');
+});
+
+app.post('/users/:id/lists', function (req, res) {
+  console.log(req.body);
+  res.end('post list');
+});
+app.put('/users/:id/lists', function (req, res) {
+  console.log(req.body);
+  res.end('put list');
+});
+app.get('/users/:id/lists', function (req, res) {
+  console.log(req.body);
+  res.end('get lists');
+});
+app.get('/users/:id/lists/:listId', function (req, res) {
+  console.log(req.body);
+  res.end('get list by id');
+});
+app.post('/users/:id/lists', function (req, res) {
+  console.log(req.body);
+  res.end('post list');
+});
+
 app.get('/signup/:email/:pass', function (req, res) {
   console.log(req.params);
   var user = new UserModel({
