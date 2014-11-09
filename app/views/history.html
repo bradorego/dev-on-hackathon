@@ -1,0 +1,15 @@
+<h1>Message History</h1>
+<table class="table">
+  <thead>
+    <td>List</td>
+    <td>Timestamp</td>
+    <td>Content</td>
+  </thead>
+  <tbody>
+    <tr ng-repeat="entry in history">
+      <td>{{entry.list}}</td>
+      <td>{{entry.timestamp}}</td>
+      <td>{{entry.content}}</td>
+    </tr>
+  </tbody>
+</table>

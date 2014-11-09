@@ -24,8 +24,8 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li><a ng-href="#/lists">Lists</a></li>
-          <li><a ng-href="#/signUp">Sign Up</a></li>
-          <li><a ng-href="#/signIn">Sign In</a></li>
+          <li><a ng-href="#/history">History</a></li>
+          <li><a ng-click="signOut()">Sign Out</a></li>
         </ul>
         <a ng-href="#"><h3 class="text-muted">africaSms</h3></a>
       </div>
@@ -86,11 +86,13 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/HistoryCtrl.js"></script>
         <script src="scripts/controllers/ListsCtrl.js"></script>
         <script src="scripts/controllers/ListViewCtrl.js"></script>
         <script src="scripts/controllers/SignUpCtrl.js"></script>
         <script src="scripts/controllers/SignInCtrl.js"></script>
+        <script src="scripts/directives/sendModal.js"></script>
+        <script src="scripts/services/everythingFactory.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -8,30 +8,39 @@
  * Controller of the africaSmsApp
  */
 angular.module('africaSmsApp')
-  .controller('ListViewCtrl', function ($scope) {
-    $scope.list = {
-      'id': 123,
-      'name': 'Mothers',
-      'numbers': [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
-      'lastSent': 1288323623006
+  .controller('ListViewCtrl', ['$scope', '$routeParams', 'EverythingFactory', '$location', function ($scope, $routeParams, EverythingFactory, $location) {
+    EverythingFactory.getListById($routeParams.id).then(function (data) {
+      $scope.list = data;
+      console.log(data);
+    });
+    $scope.deleteList = function () {
+      if (window.confirm('Are you sure you want to delete this list? All numbers will be lost.')) {
+        EverythingFactory.removeList($scope.list.id).then(function () {
+          $location.path('/lists');
+        });
+      }
     };
     $scope.editName = function () {
       var newName = window.prompt('What is this list\'s name?', $scope.list.name);
       if (newName) {
-        $scope.list.name = newName;
+        EverythingFactory.editList($scope.list.id, newName).then(function (data) {
+          $scope.list.name = data;
+        });
       }
     };
     $scope.addNumber = function (number) {
-      $scope.list.numbers.push(number);
+      if (number) {
+        EverythingFactory.addNumberToList($scope.list.id, number).then(function (data) {
+          $scope.list = data;
+          $scope.number = '';
+        });
+      }
     };
     $scope.removeNumber = function (number) {
       if (window.confirm('Are you sure you want to delete this number?')) {
-        var i = 0;
-        for (i = 0; i < $scope.list.numbers.length; i++) {
-          if ($scope.list.numbers[i] === number) {
-            $scope.list.numbers.splice(i, 1);
-          }
-        }
+        EverythingFactory.removeNumberFromList($scope.list.id, number).then(function (data) {
+          $scope.list = data;
+        });
       }
     };
     $scope.isModalOpen = false;
@@ -45,4 +54,4 @@ angular.module('africaSmsApp')
       window.alert(message);
       $scope.isModalOpen = false;
     };
-  });
+  }]);

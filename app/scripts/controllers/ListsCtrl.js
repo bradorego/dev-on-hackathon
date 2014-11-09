@@ -8,18 +8,10 @@
  * Controller of the africaSmsApp
  */
 angular.module('africaSmsApp')
-  .controller('ListsCtrl', function ($scope, $location) {
-    $scope.lists = [{
-      'id': 123,
-      'name': 'Mothers',
-      'numbers': [1,2,3,4],
-      'lastSent': 1288323623006
-    }, {
-      'id': 1234,
-      'name': 'West Village',
-      'numbers': [1,2,3,4,5,6],
-      'lastSent': 1388323623006
-    }];
+  .controller('ListsCtrl', ['$scope', '$location', 'EverythingFactory', function ($scope, $location, EverythingFactory) {
+    EverythingFactory.getLists().then(function (data) {
+      $scope.lists = data;
+    });
     $scope.goToList = function (list) {
       $location.path('/lists/' + list.id);
     };
@@ -27,11 +19,8 @@ angular.module('africaSmsApp')
       var name = window.prompt('What is this list\'s name?');
       if (name) {
         ///create list and navigate to it
-        $scope.lists.push({
-          'id': 1,
-          'name': name,
-          'numbers': [],
-          'lastSent': null
+        EverythingFactory.addList(name).then(function (data) {
+          $scope.lists = data.distributionLists;
         });
       }
     };
@@ -40,10 +29,12 @@ angular.module('africaSmsApp')
       $scope.isModalOpen = true;
     };
     $scope.messageSent = function (message) {
-      window.alert(message);
-      $scope.isModalOpen = false;
+      EverythingFactory.sendMessage(message.list, message.text).then(function (data) {
+        console.log(data);
+        $scope.isModalOpen = false;
+      });
     };
     $scope.closeModal = function () {
       $scope.isModalOpen = false;
     };
-  });
+  }]);

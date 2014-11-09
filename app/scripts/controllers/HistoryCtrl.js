@@ -8,10 +8,8 @@
  * Controller of the africaSmsApp
  */
 angular.module('africaSmsApp')
-  .controller('AboutCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('HistoryCtrl', function ($scope, EverythingFactory) {
+    EverythingFactory.getHistory().then(function (data) {
+      $scope.history = data;
+    });
   });

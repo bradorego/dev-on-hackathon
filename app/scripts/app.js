@@ -41,37 +41,19 @@ angular
         templateUrl: 'views/listView.html',
         controller: 'ListViewCtrl'
       })
+      .when('/history', {
+        templateUrl: 'views/history.html',
+        controller: 'HistoryCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
   })
-  .directive('sendModal', function () {
-    var dir = {};
-    dir.templateUrl = 'views/_send_modal.html';
-    dir.restrict = 'EA';
-    dir.scope = {
-      list: '=',
-      messageSent: '&onMessageSent',
-      closeModal: '&'
+  .run(function ($location, EverythingFactory, $rootScope) {
+    if (!EverythingFactory.getUser()._id) {
+      $location.path('/signIn');
+    }
+    $rootScope.signOut = function () {
+      window.location.reload();
     };
-    dir.controller = function ($scope) {
-      $scope.message = {
-        'list': '',
-        'text': ''
-      };
-      $scope.lists = [{
-        'name': 'Mothers',
-        'id': '123'
-      }, {
-        'name': 'West Village',
-        'id': '654'
-      }];
-    };
-
-    return dir;
-  })
-  .factory('EverythingFactory', function ($http, $q) {
-    var EverythingFactory = {};
-    console.log($http, $q);
-    return EverythingFactory;
   });

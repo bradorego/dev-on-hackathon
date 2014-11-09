@@ -1,7 +1,7 @@
 <h1>Lists</h1>
 <button class="btn btn-primary" ng-click="newMessage()">New Message</button>
-<button class="btn btn-warning" ng-click="createList()">New List</button>
-<send-modal list='' on-message-sent='messageSent(message)' close-modal='closeModal()' ng-show="isModalOpen"></send-modal>
+<button class="btn btn-success" ng-click="createList()">New List</button>
+<send-modal lists='lists' on-message-sent='messageSent(message)' close-modal='closeModal()' ng-show="isModalOpen"></send-modal>
 <table class="table">
   <thead>
     <td>Name</td>

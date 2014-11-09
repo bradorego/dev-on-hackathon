@@ -8,7 +8,7 @@
  * Controller of the africaSmsApp
  */
 angular.module('africaSmsApp')
-  .controller('SignUpCtrl', function ($scope) {
+  .controller('SignUpCtrl', ['$scope', function ($scope) {
     $scope.user = {
       email: '',
       password: ''
@@ -16,4 +16,4 @@ angular.module('africaSmsApp')
     $scope.signUp = function (user) {
       console.log(user);
     };
-  });
+  }]);

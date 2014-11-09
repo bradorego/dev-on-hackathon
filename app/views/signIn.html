@@ -2,11 +2,12 @@
 <form role="form" ng-submit="signIn(user)">
   <div class="form-group">
     <label>Email</label>
-    <input type="email" placeholder="Email" ng-model="user.email" class="form-control" />
+    <input type="email" placeholder="Email" ng-model="user.email" class="form-control" value="me@bradorego.com"/>
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="password" placeholder="Password" ng-model="user.password" class="form-control" />
+    <input type="password" placeholder="Password" ng-model="user.password" class="form-control" value="TestWord" />
   </div>
   <button type="submit" class="btn btn-success btn-block">Sign In</button>
 </form>
+<a href="#/signUp" class="btn btn-block">Need an account?</a>
