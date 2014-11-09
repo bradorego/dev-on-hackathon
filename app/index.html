@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Dev-On Hackathon</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -23,9 +23,9 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li><a ng-href="#/lists">Lists</a></li>
-          <li><a ng-href="#/history">History</a></li>
-          <li><a ng-click="signOut()">Sign Out</a></li>
+          <li ng-show="user"><a ng-href="#/lists">Lists</a></li>
+          <li ng-show="user"><a ng-href="#/history">History</a></li>
+          <li ng-show="user"><a ng-click="signOut()">Sign Out</a></li>
         </ul>
         <a ng-href="#"><h3 class="text-muted">africaSms</h3></a>
       </div>

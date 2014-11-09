@@ -15,7 +15,7 @@ angular.module('africaSmsApp')
     };
     $scope.signIn = function (user) {
       EverythingFactory.signIn(user.email, user.password).then(function (data) {
-        console.log(data);
+        $scope.$root.user = data;
         $location.path('/lists');
       });
     };
