@@ -2,10 +2,11 @@
 angular.module('africaSmsApp')
   .factory('EverythingFactory', ['$http', '$q', function ($http, $q) {
     var EverythingFactory = {},
-      currUser = {};
+      currUser = {},
+      urlRoot = '/';
     EverythingFactory.signIn = function (email, password) {
       var d = $q.defer();
-      $http.post('http://localhost:5000/signIn', {
+      $http.post(urlRoot + 'signIn', {
         'email': email,
         'password': password
       }).success(function (data) {
@@ -25,7 +26,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.addList = function (name) {
       var deferred = $q.defer();
-      $http.post('http://localhost:5000/users/' + currUser._id + '/lists', {
+      $http.post(urlRoot + 'users/' + currUser._id + '/lists', {
         'name': name
       }).success(function (data) {
         currUser = data;
@@ -37,7 +38,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.editList = function (id, name) {
       var deferred = $q.defer();
-      $http.put('http://localhost:5000/users/' + currUser._id + '/lists/' + id, {
+      $http.put(urlRoot + 'users/' + currUser._id + '/lists/' + id, {
         'name': name
       }).success(function (data) {
         deferred.resolve(data);
@@ -48,7 +49,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.removeList = function (id) {
       var deferred = $q.defer();
-      $http.delete('http://localhost:5000/users/' + currUser._id + '/lists/' + id)
+      $http.delete(urlRoot + 'users/' + currUser._id + '/lists/' + id)
         .success(function (data) {
           deferred.resolve(data);
         }).error(function (data) {
@@ -58,7 +59,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.addNumberToList = function (id, number) {
       var deferred = $q.defer();
-      $http.post('http://localhost:5000/users/' + currUser._id + '/lists/' + id + '/' + number)
+      $http.post(urlRoot + 'users/' + currUser._id + '/lists/' + id + '/' + number)
         .success(function (data) {
           deferred.resolve(data);
         }).error(function (data) {
@@ -68,7 +69,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.removeNumberFromList = function (id, number) {
       var deferred = $q.defer();
-      $http.delete('http://localhost:5000/users/' + currUser._id + '/lists/' + id + '/' + number)
+      $http.delete(urlRoot + 'users/' + currUser._id + '/lists/' + id + '/' + number)
         .success(function (data) {
           deferred.resolve(data);
         }).error(function (data) {
@@ -78,7 +79,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.getLists = function () {
       var d = $q.defer();
-      $http.get('http://localhost:5000/users/' + currUser._id + '/lists')
+      $http.get(urlRoot + 'users/' + currUser._id + '/lists')
         .success(function (data) {
           d.resolve(data);
         })
@@ -89,7 +90,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.getListById = function (id) {
       var d = $q.defer();
-      $http.get('http://localhost:5000/users/' + currUser._id + '/lists/' + id)
+      $http.get(urlRoot + 'users/' + currUser._id + '/lists/' + id)
         .success(function (data) {
           d.resolve(data);
         })
@@ -100,7 +101,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.getHistory = function () {
       var d = $q.defer();
-      $http.get('http://localhost:5000/users/' + currUser._id + '/history')
+      $http.get(urlRoot + 'users/' + currUser._id + '/history')
         .success(function (data) {
           d.resolve(data);
         })
@@ -111,7 +112,7 @@ angular.module('africaSmsApp')
     };
     EverythingFactory.sendMessage = function (list, message) {
       var d = $q.defer();
-      $http.post('http://localhost:5000/sendMessage', {
+      $http.post(urlRoot + 'sendMessage', {
         'list': list,
         'userId': currUser._id,
         'message': message
