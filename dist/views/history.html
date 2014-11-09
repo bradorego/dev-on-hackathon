@@ -1,1 +1,1 @@
-<h1>Message History</h1> <table class="table"> <thead> <td>List <td>Timestamp <td>Content  <tbody> <tr ng-repeat="entry in history"> <td>{{entry.list}} <td>{{entry.timestamp}} <td>{{entry.content}}   </table>
+<h1>Message History</h1> <table class="table"> <thead> <td>List <td>Timestamp <td>Content  <tbody> <tr ng-repeat="entry in history"> <td>{{entry.list}} <td>{{entry.timestamp | date:'short'}} <td>{{entry.content}}   </table>
