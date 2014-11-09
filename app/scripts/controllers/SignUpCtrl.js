@@ -8,12 +8,15 @@
  * Controller of the africaSmsApp
  */
 angular.module('africaSmsApp')
-  .controller('SignUpCtrl', ['$scope', function ($scope) {
+  .controller('SignUpCtrl', ['$scope', 'EverythingFactory', '$location', function ($scope, EverythingFactory, $location) {
     $scope.user = {
       email: '',
       password: ''
     };
     $scope.signUp = function (user) {
-      console.log(user);
+      EverythingFactory.signUp(user.email, user.password).then(function (data) {
+        console.log(data);
+        $location.path('/lists');
+      });
     };
   }]);

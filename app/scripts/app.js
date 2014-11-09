@@ -19,7 +19,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -48,12 +48,12 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  })
-  .run(function ($location, EverythingFactory, $rootScope) {
+  }])
+  .run(['$location', 'EverythingFactory', '$rootScope', function ($location, EverythingFactory, $rootScope) {
     if (!EverythingFactory.getUser()._id) {
       $location.path('/signIn');
     }
     $rootScope.signOut = function () {
       window.location.reload();
     };
-  });
+  }]);

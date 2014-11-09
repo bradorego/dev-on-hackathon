@@ -17,6 +17,19 @@ angular.module('africaSmsApp')
       });
       return d.promise;
     };
+    EverythingFactory.signUp = function (email, password) {
+      var d = $q.defer();
+      $http.post(urlRoot + 'signUp', {
+        'email': email,
+        'password': password
+      }).success(function (data) {
+        EverythingFactory.setUser(data);
+        d.resolve(data);
+      }).error(function (data) {
+        d.reject(data);
+      });
+      return d.promise;
+    };
     EverythingFactory.setUser = function (user) {
       currUser = user;
       return currUser;

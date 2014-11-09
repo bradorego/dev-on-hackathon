@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('africaSmsApp').directive('sendModal', function () {
+angular.module('africaSmsApp').directive('sendModal', ['$scope', function ($scope) {
   var dir = {};
   dir.templateUrl = '/views/_send_modal.html';
   dir.restrict = 'EA';
@@ -9,7 +9,7 @@ angular.module('africaSmsApp').directive('sendModal', function () {
     messageSent: '&onMessageSent',
     closeModal: '&'
   };
-  dir.controller = function ($scope) {
+  dir.controller = function () {
     $scope.message = {
       'list': '',
       'text': ''
@@ -17,4 +17,4 @@ angular.module('africaSmsApp').directive('sendModal', function () {
   };
 
   return dir;
-});
+}]);
