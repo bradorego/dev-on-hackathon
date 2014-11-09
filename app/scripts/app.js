@@ -56,4 +56,23 @@ angular
     $rootScope.signOut = function () {
       window.location.reload();
     };
-  }]);
+  }])
+  .directive('phoneNumber', function () {
+    return {
+      require: 'ngModel',
+      link: function (scope, elm, attrs, ctrl) {
+        ctrl.$validators.phone = function (modelValue, viewValue) {
+          if (ctrl.$isEmpty(modelValue)) {
+            // consider empty models to be valid
+            return true;
+          }
+          viewValue = viewValue.replace(/\D/g, '');
+          if (viewValue.length === 10 || (viewValue.length === 11 && viewValue.charAt(0) === '1')) {
+            return true;
+          }
+          // it is invalid
+          return false;
+        };
+      }
+    };
+  });

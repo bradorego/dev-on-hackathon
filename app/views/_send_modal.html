@@ -8,21 +8,21 @@
           <h4 class="modal-title">New Message</h4>
         </div>
         <div class="modal-body">
-          <form role="form">
+          <form role="form" name="sendForm">
             <div class="form-group">
               <label>Recipient List</label>
-              <select ng-model="message.list" class="form-control" ng-options="list.name for list in lists"></select>
+              <select ng-model="message.list" class="form-control" ng-options="list.name for list in lists" required></select>
             </div>
             <div class="form-group">
               <label>Message</label>
-              <textarea placeholder="Enter message text" ng-model="message.text" class="form-control" maxlength="160"></textarea>
+              <textarea placeholder="Enter message text" ng-model="message.text" class="form-control" maxlength="160" required></textarea>
               <small>{{160 - message.text.length}} characters remaining</small>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
-          <button type="button" class="btn btn-primary" ng-click="messageSent({message: message})">Send</button>
+          <button type="button" class="btn btn-primary" ng-click="messageSent({message: message})" ng-disabled="sendForm.$valid">Send</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

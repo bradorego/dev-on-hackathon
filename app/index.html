@@ -13,6 +13,15 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <style type="text/css">
+      input.ng-invalid.ng-dirty,
+      textarea.ng-invalid.ng-dirty,
+      select.ng-invalid.ng-dirty {
+        border-color: red;
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+      }
+    </style>
   </head>
   <body ng-app="africaSmsApp" ng-strict-di>
     <!--[if lt IE 7]>

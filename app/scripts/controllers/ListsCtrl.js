@@ -29,10 +29,12 @@ angular.module('africaSmsApp')
       $scope.isModalOpen = true;
     };
     $scope.messageSent = function (message) {
-      EverythingFactory.sendMessage(message.list, message.text).then(function (data) {
-        console.log(data);
-        $scope.isModalOpen = false;
-      });
+      if (message.text) {
+        EverythingFactory.sendMessage(message.list, message.text).then(function (data) {
+          console.log(data);
+          $scope.isModalOpen = false;
+        });
+      }
     };
     $scope.closeModal = function () {
       $scope.isModalOpen = false;

@@ -14,9 +14,20 @@ angular.module('africaSmsApp')
       password: 'TestWord'
     };
     $scope.signIn = function (user) {
+      $scope.error = '';
       EverythingFactory.signIn(user.email, user.password).then(function (data) {
-        $scope.$root.user = data;
-        $location.path('/lists');
+        if (data._id) {
+          $scope.$root.user = data;
+          $location.path('/lists');
+        } else {
+          if (data.code === 101) {
+            $scope.error = 'User not found';
+          } else if (data.code === 102) {
+            $scope.error = 'Wrong Password';
+          } else {
+            $scope.error = 'Unknown error';
+          }
+        }
       });
     };
   }]);

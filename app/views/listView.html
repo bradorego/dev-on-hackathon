@@ -8,9 +8,9 @@
 </h4>
 <send-modal list="list" on-message-sent="messageSent(message)" close-modal="closeModal()" ng-show="isModalOpen"></send-modal>
 <label for="exampleInputEmail1">Add Phone Number</label>
-<form role="form" ng-submit="addNumber(number)">
+<form role="form" ng-submit="addNumber(number)" name="addPhone">
   <div class="form-group col-sm-9">
-    <input type="phone" class="form-control" placeholder="Enter number" ng-model="number">
+    <input type="tel" class="form-control" placeholder="Enter number" ng-model="number" phone-number required title="Please enter valid phone number." />
   </div>
   <button type="submit" class="btn btn-default col-sm-3">Add</button>
 </form>
