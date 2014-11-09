@@ -56,11 +56,17 @@ app.post('/signIn', function (req, res) {
       res.end(err);
     } else {
       if (!user) {
-        res.end('not found');
+        res.json({
+          'code': 101,
+          'message': 'not found'
+        });
       } else if (crypto.createHash('sha1').update(req.body.password).digest('hex') === user.password) {
         res.json(user);
       } else {
-        res.end('bad password');
+        res.json({
+          'code': 102,
+          'message': 'bad password'
+        });
       }
     }
   });
