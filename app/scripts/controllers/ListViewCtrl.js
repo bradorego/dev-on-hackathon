@@ -11,7 +11,6 @@ angular.module('africaSmsApp')
   .controller('ListViewCtrl', ['$scope', '$routeParams', 'EverythingFactory', '$location', function ($scope, $routeParams, EverythingFactory, $location) {
     EverythingFactory.getListById($routeParams.id).then(function (data) {
       $scope.list = data;
-      console.log(data);
     });
     $scope.deleteList = function () {
       if (window.confirm('Are you sure you want to delete this list? All numbers will be lost.')) {
