@@ -332,12 +332,19 @@ app.post('/sendMessage', function (req, res) {
             res.send(err);
           } else if (user) {
             // UserModel.update({'_id': user._id}, {'$push': {'distributionLists': list}}, function (err) { //, numAffected, raw) {
-            var message = {
-              'list': req.body.list.name,
-              'timestamp': +new Date(),
-              'content': req.body.message
-            };
-            UserModel.update({'_id': req.body.userId}, {'$push': {'pastMessages': message}}, function (err) {
+            var timestamp = +new Date(),
+              message = {
+                'list': req.body.list.name,
+                'timestamp': timestamp,
+                'content': req.body.message
+              },
+              j = 0;
+            for (j = 0; j < user.distributionLists.length; j++) {
+              if (user.distributionLists[j].id === req.body.list.id) {
+                user.distributionLists[j].lastSent = timestamp;
+              }
+            }
+            UserModel.update({'_id': req.body.userId}, {'$push': {'pastMessages': message}, '$set': {'distributionLists': user.distributionLists}}, function (err) {
               if (err) {
                 res.status(500);
                 res.send(err);

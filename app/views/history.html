@@ -8,7 +8,7 @@
   <tbody>
     <tr ng-repeat="entry in history">
       <td>{{entry.list}}</td>
-      <td>{{entry.timestamp}}</td>
+      <td>{{entry.timestamp | date:'short'}}</td>
       <td>{{entry.content}}</td>
     </tr>
   </tbody>
